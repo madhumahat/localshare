@@ -1,0 +1,11 @@
+*.pyc
+*.pyo
+bin
+src/*.egg-info
+lib
+lib64
+develop-eggs
+dist
+parts
+.DS_Store
+
