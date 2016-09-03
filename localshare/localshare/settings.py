@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-
+import sys
 import os
-
+from mongoengine import connect
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -74,13 +74,24 @@ WSGI_APPLICATION = 'localshare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# MongoDB settings
+MONGODB_DATABASES = {
+    'default': {'name': 'django_mongoengine'}
+}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
 
+#SESSION_ENGINE = 'mongoengine.django.sessions'
+#SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+
+
+connect('localshare', username='sa', password='!LocalShare2017!')
+#if running other than localhost and port 27017
+#connect('project1', username='sa', password='!LocalShare2017!', host='192.168.1.35', port=12345)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

@@ -1,6 +1,13 @@
 import datetime
 from django.shortcuts import render
+from home.models import Event
+from django.http import Http404
 
 
 def index(request):
-    return render(request, 'index.html',  {'time' : datetime.datetime.now()})
+	try:
+		context = Event.objects()
+	except:
+		raise Http404("No events")
+	return render(request, 'index.html',  {'events' : context})
+

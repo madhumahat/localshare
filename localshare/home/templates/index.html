@@ -12,6 +12,9 @@
       </div>
       <hr />
        <div class="row">
+         {% for event in events %}
+            <li>{{event.name}}</li>
+          {% endfor %}
          <p>This is a template rendered by Django's templating system.</p>
          <!--
               'time' is a context variable passed from Django's view.
